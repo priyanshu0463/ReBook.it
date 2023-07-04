@@ -1,0 +1,59 @@
+.card {
+    width:25rem;
+    min-height: 10rem;
+    align-items: center;
+    justify-content: center;
+    /* background-color: lightgrey; */
+    border: 3px solid rgb(78, 58, 58);
+    margin-left: auto;
+    margin-right: auto;
+  
+  }
+  .bookcard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .bookcard > div {
+    margin: 10px;
+    width: 200px; /* Adjust the width as per your requirement */
+    text-align: center;
+  }
+  .navbar{
+    align-items: center;
+    justify-content: center;
+    color: rgb(220, 108, 17);
+  }
+  .navbar-brand{
+    /* align-items: center;
+    justify-content: center; */
+    font-weight: 1000;
+    font-size: 30px;
+    color: rgb(220, 108, 17);
+  }
+  .result-box{
+    align-items: center;
+    justify-content: center;
+    
+  }
+  .book-image{
+    size: 1000px;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  .result-box{
+    align-items: stretch;
+    justify-content: center;
+    font-weight: 1000;
+    text-align: center;
+    
+  }
+  .add-box{
+    align-items: end;
+    justify-content: space-between;
+  }
+  .book-name{
+   text-transform:capitalize
+  }
