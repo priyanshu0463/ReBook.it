@@ -41,15 +41,17 @@ function Api(){
   //   }
   // };
 
-  const handleDelete=(title)=>{
-    axios.delete(`http://127.0.0.1:8000/delete/${title}`)
-    .then((response)=>{
-      console.log('record deleted successfully');
-      handleRefresh();
-    })
-    .catch(error=>{
-      console.error('error in deleting',error);
-    });
+  const handleDelete= async(title)=>{
+    try{
+      // await axios.post(`http://127.0.0.1:8000/delete/${title}/`);
+      await fetch(`http://127.0.0.1:8000/delete/${title}`,{
+        method:"post",
+      })
+      console.log("Record deleted successfully");
+      
+    }catch(error){
+      console.error('Error deleting record', error);
+    }
   };
   //<button onClick={()=>handleDelete(item.title)}>Delete</button>
   

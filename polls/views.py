@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from polls. models import Book
 from django.views.decorators.csrf import csrf_exempt
 import json
-from django.shortcuts import get_object_or_404
+from django.views.decorators.http import require_POST
 
  
 
@@ -47,10 +47,16 @@ def getData(request):
     serializedData=list(data)
     return JsonResponse(serializedData,safe=False)
 
+@require_POST
+@csrf_exempt
 def deleteRecord(request,title):
-    record=get_object_or_404(Book,title=title)
-    record.delete()
-    return JsonResponse({'message':'Record Deleated'})
+    print(request)
+    try:
+        record=Book.objects.filter(title=title)
+        record.delete()
+        return JsonResponse({'message':'Record Deleated'})
+    except Book.DoesNotExist:
+        return JsonResponse({'message':'record not found'},status=404)
 
 # envnt bin : source /home/priyanshu/myDjangoproject/my_env/bin/activate 
 
