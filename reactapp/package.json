@@ -9,11 +9,14 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+    "express": "^4.18.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.7",
-    "react-scripts": "^1.1.5",
+    "react-scripts": "^5.0.1",
     "redux": "^4.2.1",
+    "socket.io": "^4.7.1",
+    "socket.io-client": "^4.7.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -41,6 +44,11 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "react-router-dom": "^6.11.2"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.7",
+    "utf-8-validate": "^5.0.10"
   }
 }
