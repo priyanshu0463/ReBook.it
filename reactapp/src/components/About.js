@@ -12,3 +12,4 @@ ok will update shortly
 }
 
 export default About;
+

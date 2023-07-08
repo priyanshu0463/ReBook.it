@@ -14,7 +14,7 @@ from django.views.decorators.http import require_POST
 def fetch_book(request):
     if request.method == 'POST':
         data =json.loads(request.body)
-        
+        #python manage.py runserver 0.0.0.0:9595
         # book_id = request.POST.get('book_id')
         book_id = data.get('book_id')
         print(book_id)

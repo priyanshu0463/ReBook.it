@@ -1,6 +1,8 @@
 import React, { useEffect,useState } from 'react';
 import axios from 'axios';
 import './Api.css';
+import io from 'socket.io-client';
+const socket= io.connect("http://10.113.19.100:3009");
 
 
 
@@ -13,11 +15,52 @@ function Api(){
   const [genre, setGenre] = useState('');
   const [pages, setPages] = useState('');
   const [data,setData]=useState([]);
+  const [message,setMessage]=useState("");
+  // const [redirectUrl,setRedirectUrl]=useState("");
+
+  // const handleRedirect=(url)=>{
+  //   setRedirectUrl(url);
+  // };
+  // if
+  
+  // const combinedClickTrade = async(e)=>{
+  //   setMessage(e);
+  //   sendMessage();
+
+
+  // };
+
+
+  const sendMessage = (message) =>{
+    setMessage(message);
+    console.log(message);
+    socket.emit("send_message",{message});  
+  };
+  // <button onClick={()=>{
+    //   sendMessage(item.title);
+    // }}><b>Trade</b></button>
+// <button onClick={()=>{
+    //   sendMessage(item.title);
+    // }}><b>Trade</b></button>
+
+
+  // useEffect(()=>{
+  //   socket.emit("send_message",{message});
+  // })
+  // <button onClick={()=>{
+    //   sendMessage(item.title);
+    // }}><b>Trade</b></button>
+
+  // useEffect(()=>{
+  //   socket.on("receive_message",(data)=>{
+  //     setMReceived(data.message)
+  //   })
+  // })
 
   useEffect(()=>{
     const fetchData = async() => {
       try{
-        const response = await axios.get('http://127.0.0.1:8000/data/');
+        const response = await axios.get('http://0.0.0.0:9595//data/');
         setData(response.data);
       }catch(error){
         console.error(error)
@@ -44,10 +87,11 @@ function Api(){
   const handleDelete= async(title)=>{
     try{
       // await axios.post(`http://127.0.0.1:8000/delete/${title}/`);
-      await fetch(`http://127.0.0.1:8000/delete/${title}`,{
+      await fetch(`http://0.0.0.0:9595//delete/${title}`,{
         method:"post",
       })
       console.log("Record deleted successfully");
+      handleRefresh();
       
     }catch(error){
       console.error('Error deleting record', error);
@@ -59,7 +103,7 @@ function Api(){
   const handleSubmit = async(e) => {
     e.preventDefault();
     try{
-      const response =await axios.post('http://127.0.0.1:8000',{book_id: userInput});
+      const response =await axios.post('http://0.0.0.0:9595/',{book_id: userInput});
       console.log(response.data);
 
     }catch (error){
@@ -84,6 +128,7 @@ function Api(){
           setResult('');
         } else {
           setResult('Book Not found :(');
+          
           setImageUrl('');
           setAuthor('');
           setGenre('');
@@ -192,8 +237,10 @@ function Api(){
             <img src={item.image} alt={item.title} />
             <p><b>{item.title}</b></p>
             <p><b>Author :</b>  {item.author}</p>
-            <button onClick={()=>handleDelete(item.title)}><b>Delete </b></button>
-            <button style={{marginLeft:'10px'}}><b>Trade</b></button>
+            <button onClick={()=>handleDelete(item.title)}  ><b>Delete </b></button>
+            <button onClick={()=>{
+        sendMessage(item.title);        
+      }} style={{marginLeft:'10px'}}><b>Trade</b></button>
             
           
             </div>
