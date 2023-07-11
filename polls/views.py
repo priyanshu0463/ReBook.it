@@ -5,7 +5,7 @@ from polls. models import Book
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.views.decorators.http import require_POST
-
+# envnt bin : source /home/priyanshu/myDjangoproject/my_env/bin/activate 
  
 
 
@@ -58,7 +58,7 @@ def deleteRecord(request,title):
     except Book.DoesNotExist:
         return JsonResponse({'message':'record not found'},status=404)
 
-# envnt bin : source /home/priyanshu/myDjangoproject/my_env/bin/activate 
+
 
 # class ReactView(APIView):
 #     # permission_classes ={permissions.AllowAny}

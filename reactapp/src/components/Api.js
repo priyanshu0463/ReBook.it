@@ -4,6 +4,11 @@ import './Api.css';
 import io from 'socket.io-client';
 const socket= io.connect("http://10.113.19.100:3009");
 
+// to run: http://10.113.19.100:3000
+// database: python manage.py runserver 0.0.0.0:9595
+// server: yarn start
+// envnt bin: source /home/priyanshu/myDjangoproject/my_env/bin/activate 
+
 
 
 
